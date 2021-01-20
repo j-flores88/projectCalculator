@@ -1,55 +1,51 @@
-let displayValue = '0'
-let initalValue = 0;
-let secondValue = 0;
-let firstOperator;
-let secOperator;
+let currentOperand;
+let previousOperand;
+let operator;
 
-const calcDis = document.getElementById('display')
-const btns = document.querySelectorAll('button')
+
+
+const currentDisplay = document.querySelector('[data-current-operand]')
+const buttons = document.querySelectorAll('button')
 
 function updateDisplay() {
-    calcDis.textContent = displayValue
+    currentDisplay.innerText = currentOperand
 }
-updateDisplay();
 
 function clickBtn() {
-    btns.forEach(function(btn){
-        btn.addEventListener('click', function(){
-            if(btn.classList.contains('operand')){
-                initalValue = btn.value
-                numberInput()
-            } else if(btn.classList.contains('operator')) {
-                console.log(btn.value)
-            } else if(btn.classList.contains('clear')) {
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (button.classList.contains('operand')){
+                numberInput(button.innerText);             
+            } else if(button.classList.contains('operator')) {
+                console.log(button.value)
+            } else if(button.classList.contains('all-clear')) {
                 clearDisplay()
-            } else if(btn.classList.contains('delete')){
-                console.log(btn.value)
-            } else if(btn.classList.contains('sign')){
-                console.log(btn.value)
-            } else if(btn.classList.contains('percent')){
-                console.log(btn.value)
-            } else if(btn.classList.contains('decimal')){
-                console.log(btn.value)
-            } else if(btn.classList.contains('equals')){
-                console.log(btn.value)
+            } else if(button.classList.contains('delete')){
+                console.log(button.value)
+            } else if(button.classList.contains('sign')){
+                console.log(button.value)
+            } else if(button.classList.contains('percent')){
+                console.log(button.value)
+            } else if(button.classList.contains('equals')){
+                console.log(button.value)
             }
         })
     })
 }
-clickBtn()
+
 
 function numberInput(operand){
-    if(displayValue === '0' && initalValue !== 0){
-        displayValue = initalValue
-    } else if(initalValue !== 0 && secondValue === 0) {
-        displayValue += initalValue
-    }
-    updateDisplay()
+    if(operand === '.' && currentOperand.includes('.')) return;
+    currentOperand = currentOperand.toString() + operand.toString();
+    updateDisplay();
 }
 
 function clearDisplay() {
-    displayValue = '0';
-    initalValue = 0;
-    secondValue = 0;
+    currentOperand = ''
+    previousOperand = ''
+    operator = undefined;
     updateDisplay()
 }
+
+clearDisplay();
+clickBtn()
