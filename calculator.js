@@ -1,6 +1,7 @@
 /*if($) {
     alert('Connected!')
 }*/
+let dispVal = '0'
 let initVal = 0;
 let secVal = 0;
 let firstOperator;
@@ -9,46 +10,31 @@ let secOperator;
 const calcDis = document.getElementById('display')
 const btns = document.querySelectorAll('button')
 
-calcDis.textContent = '0'
+function updateDisplay() {
+}
+
 
 function clickBtn() {
-    for(let i = 0; i <= btns.length; i++) {
-        btns[i].addEventListener('click', function(){
-            if(btns[i].classList.contains('operand')) {
-                initVal = btns[i].value
-                numInput(initVal)
-                //calcDis.textContent = initVal
-            } else if(btns[i].classList.contains('operator')) {
-                console.log(btns[i].value)
-                //operator functuion
-            } else if(btns[i].classList.contains('sign')) {
-                console.log(btns[i].value)
-                //sign function
-            } else if(btns[i].classList.contains('percent')) {
-                console.log(btns[i].value)
-                //percent function
-            } else if(btns[i].classList.contains('decimal')) {
-                console.log(btns[i].value)
-                //decimal function
-            } else if(btns[i].classList.contains('equals')) {
-                console.log(btns[i].value)
-                //equals function
-            } else if(btns[i].classList.contains('clear')) {
-                initVal = 0;
-                secVal = 0
-                calcDis.textContent = '0'
+    btns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+            if(btn.classList.contains('operand')){
+                console.log(btn.value)
+            } else if(btn.classList.contains('operator')) {
+                console.log(btn.value)
+            } else if(btn.classList.contains('clear')) {
+                console.log(btn.value)
+            } else if(btn.classList.contains('delete')){
+                console.log(btn.value)
+            } else if(btn.classList.contains('sign')){
+                console.log(btn.value)
+            } else if(btn.classList.contains('percent')){
+                console.log(btn.value)
+            } else if(btn.classList.contains('decimal')){
+                console.log(btn.value)
+            } else if(btn.classList.contains('equals')){
+                console.log(btn.value)
             }
         })
-    }
+    })
 }
 clickBtn()
-
-function numInput(operand) {
-    if(initVal !== 0 && secVal === 0) {
-        secVal = operand
-        calcDis.textContent = initVal
-    } else if (initVal !== 0 && secVal !== 0) {
-        secVal += initVal
-        calcDis.textContent = Number(secVal)
-    }
-}
