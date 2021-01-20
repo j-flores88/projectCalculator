@@ -1,9 +1,6 @@
-/*if($) {
-    alert('Connected!')
-}*/
-let dispVal = '0'
-let initVal = 0;
-let secVal = 0;
+let displayValue = '0'
+let initalValue = 0;
+let secondValue = 0;
 let firstOperator;
 let secOperator;
 
@@ -11,7 +8,7 @@ const calcDis = document.getElementById('display')
 const btns = document.querySelectorAll('button')
 
 function updateDisplay() {
-    calcDis.textContent = dispVal
+    calcDis.textContent = displayValue
 }
 updateDisplay();
 
@@ -19,13 +16,12 @@ function clickBtn() {
     btns.forEach(function(btn){
         btn.addEventListener('click', function(){
             if(btn.classList.contains('operand')){
-                initVal = btn.value
-                dispVal = initVal
-                updateDisplay()
+                initalValue = btn.value
+                numberInput()
             } else if(btn.classList.contains('operator')) {
                 console.log(btn.value)
             } else if(btn.classList.contains('clear')) {
-                console.log(btn.value)
+                clearDisplay()
             } else if(btn.classList.contains('delete')){
                 console.log(btn.value)
             } else if(btn.classList.contains('sign')){
@@ -41,3 +37,19 @@ function clickBtn() {
     })
 }
 clickBtn()
+
+function numberInput(operand){
+    if(displayValue === '0' && initalValue !== 0){
+        displayValue = initalValue
+    } else if(initalValue !== 0 && secondValue === 0) {
+        displayValue += initalValue
+    }
+    updateDisplay()
+}
+
+function clearDisplay() {
+    displayValue = '0';
+    initalValue = 0;
+    secondValue = 0;
+    updateDisplay()
+}
