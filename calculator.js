@@ -11,14 +11,17 @@ const calcDis = document.getElementById('display')
 const btns = document.querySelectorAll('button')
 
 function updateDisplay() {
+    calcDis.textContent = dispVal
 }
-
+updateDisplay();
 
 function clickBtn() {
     btns.forEach(function(btn){
         btn.addEventListener('click', function(){
             if(btn.classList.contains('operand')){
-                console.log(btn.value)
+                initVal = btn.value
+                dispVal = initVal
+                updateDisplay()
             } else if(btn.classList.contains('operator')) {
                 console.log(btn.value)
             } else if(btn.classList.contains('clear')) {
