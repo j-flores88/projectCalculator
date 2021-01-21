@@ -37,6 +37,22 @@ function clickBtn() {
     })
 }
 
+window.addEventListener('keydown', function(e){
+    const key = document.querySelector(`button[data-key="${e.keyCode}"]`);
+        if(key.classList.contains('operand')) {
+            numberInput(key.innerText)
+        } else if(key.classList.contains('operator')) {
+            operationInput(key.innerText)
+            operator = key.innerText
+        } else if(key.classList.contains('all-clear')) {
+            clearDisplay()
+        } else if(key.classList.contains('delete')){
+            deleteBtn()
+        } else if(key.classList.contains('equals')){
+            compute()
+        }
+})
+
 
 function numberInput(operand){
     if(operand === '.' && currentOperand.includes('.')) return;
