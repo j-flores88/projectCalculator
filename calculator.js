@@ -8,7 +8,7 @@ const currentDisplay = document.querySelector('[data-current-operand]')
 const previousDisplay = document.querySelector('[data-previous-operand]')
 const buttons = document.querySelectorAll('button')
 
-function updateDisplay() {
+const updateDisplay = () => {
     currentDisplay.innerText = displayNumber(currentOperand);
     if(operator !== undefined) {
         previousDisplay.innerText = `${displayNumber(previousOperand)} ${operator}`
@@ -18,7 +18,7 @@ function updateDisplay() {
 
 }
 
-function clickBtn() {
+const clickBtn = () => {
     buttons.forEach(button => {
         button.addEventListener('click', () => {
             if (button.classList.contains('operand')){
@@ -37,7 +37,7 @@ function clickBtn() {
     })
 }
 
-window.addEventListener('keydown', function(e){
+window.addEventListener('keydown', (e) => {
     const key = document.querySelector(`button[data-key="${e.keyCode}"]`);
         if(key.classList.contains('operand')) {
             numberInput(key.innerText)
@@ -54,13 +54,13 @@ window.addEventListener('keydown', function(e){
 })
 
 
-function numberInput(operand){
+const numberInput = (operand) => {
     if(operand === '.' && currentOperand.includes('.')) return;
     currentOperand = currentOperand.toString() + operand.toString();
     updateDisplay();
 }
 
-function operationInput(operator) {
+const operationInput = (operator) => {
     if(currentOperand === '') return;
     if(previousOperand !== '') {
         compute();
@@ -70,7 +70,7 @@ function operationInput(operator) {
     compute()
 }
 
-function compute(){
+const compute = () => {
     let computation;
     const prev = parseFloat(previousOperand);
     const current = parseFloat(currentOperand);
@@ -98,7 +98,7 @@ function compute(){
     updateDisplay()
 }
 
-function displayNumber(number) {
+const displayNumber = (number) => {
     const stringNumber = number.toString();
     const integerDigits = parseFloat(stringNumber.split('.')[0]);
     const decimalDigits = stringNumber.split('.')[1];
@@ -116,12 +116,12 @@ function displayNumber(number) {
     }
 }
 
-function deleteBtn() {
+const deleteBtn = () => {
     currentOperand = currentOperand.toString().slice(0, -1);
     updateDisplay()
 }
 
-function clearDisplay() {
+const clearDisplay = () => {
     currentOperand = ''
     previousOperand = ''
     operator = undefined;
